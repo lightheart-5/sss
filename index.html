@@ -15,24 +15,31 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
     <title>妇女节快乐</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #000;
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            -webkit-perspective: 1000;
-            perspective: 1000;
+        *,
+        *::after,
+        *::before {
+          padding: 0;
+          margin: 0;
+          box-sizing: border-box;
         }
+
+        :root {
+          --dark-color: #000;
+        }
+
+        body {
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          min-height: 100vh;
+          background-color: var(--dark-color);
+          overflow: hidden;
+          perspective: 1000px;
+          will-change: transform;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
         .greeting {
             position: absolute;
             top: 8%;
@@ -74,6 +81,36 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
+        }
+
+        .flower,
+        .flower__leafs,
+        .flower__leaf,
+        .flower__light,
+        .grow-ans {
+          will-change: transform;
+          animation-play-state: running;
+          backface-visibility: hidden;
+        }
+
+        .loaded .flower {
+          animation-play-state: running !important;
+        }
+
+        .loaded .flower__leafs {
+          animation-play-state: running !important;
+        }
+
+        .loaded .flower__leaf {
+          animation-play-state: running !important;
+        }
+
+        .loaded .flower__light {
+          animation-play-state: running !important;
+        }
+
+        .loaded .grow-ans {
+          animation-play-state: running !important;
         }
     </style>
 </head>
@@ -378,6 +415,25 @@
         </div>
       </div>
     </div>
-    <script src="main.js" defer></script>
+    <script>
+        console.log('JavaScript文件已加载');
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initAnimation);
+        } else {
+            initAnimation();
+        }
+
+        function initAnimation() {
+            console.log('DOM加载完成，准备初始化动画');
+            try {
+                document.body.classList.add("loaded");
+                document.body.offsetHeight;
+                console.log('动画初始化完成');
+            } catch (error) {
+                console.error('初始化时发生错误:', error);
+            }
+        }
+    </script>
 </body>
 </html>
