@@ -10,6 +10,7 @@
   --dark-color: #000;
 }
 
+/* 优化动画性能 */
 body {
   display: flex;
   align-items: flex-end;
@@ -18,6 +19,41 @@ body {
   background-color: var(--dark-color);
   overflow: hidden;
   perspective: 1000px;
+  will-change: transform;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 确保动画正常运行 */
+.flower,
+.flower__leafs,
+.flower__leaf,
+.flower__light,
+.grow-ans {
+  will-change: transform;
+  animation-play-state: running;
+  backface-visibility: hidden;
+}
+
+/* 添加动画调试样式 */
+.loaded .flower {
+  animation-play-state: running !important;
+}
+
+.loaded .flower__leafs {
+  animation-play-state: running !important;
+}
+
+.loaded .flower__leaf {
+  animation-play-state: running !important;
+}
+
+.loaded .flower__light {
+  animation-play-state: running !important;
+}
+
+.loaded .grow-ans {
+  animation-play-state: running !important;
 }
 
 .night {
@@ -1314,8 +1350,4 @@ body {
   0% {
     transform: scale(0);
   }
-}
-.container * {
-  -webkit-animation-play-state: paused !important;
-          animation-play-state: paused !important;
 }
