@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="献给亲爱的妈妈的妇女节祝福">
+    <meta property="og:title" content="妇女节快乐">
+    <meta property="og:description" content="献给亲爱的妈妈的妇女节祝福">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+    <title>妇女节快乐</title>
+    <style>
+        /* 您原有的CSS内容 */
+        // ... existing code ...
+    </style>
+</head>
+<body>
+    <div class="flower">
+        <div class="flower__leafs">
+            <div class="flower__leaf flower__leaf--1"></div>
+            <div class="flower__leaf flower__leaf--2"></div>
+            <div class="flower__leaf flower__leaf--3"></div>
+            <div class="flower__leaf flower__leaf--4"></div>
+            <div class="flower__leaf flower__leaf--5"></div>
+            <div class="flower__leaf flower__leaf--6"></div>
+            <div class="flower__leaf flower__leaf--7"></div>
+            <div class="flower__leaf flower__leaf--8"></div>
+        </div>
+        <div class="flower__light"></div>
+    </div>
+    <div class="greeting"></div>
+
+    <script>
+        console.log('JavaScript文件已加载');
+
+        async function fetchGreetings() {
+            try {
+                const response = await fetch('/api/greetings');
+                const data = await response.json();
+                console.log('获取到的问候信息:', data);
+                
+                const greetingElement = document.querySelector('.greeting');
+                if (greetingElement) {
+                    greetingElement.textContent = data.message;
+                }
+            } catch (error) {
+                console.error('获取问候信息失败:', error);
+                // 如果API调用失败，显示默认消息
+                const greetingElement = document.querySelector('.greeting');
+                if (greetingElement) {
+                    greetingElement.textContent = "献给亲爱的妈妈的妇女节祝福";
+                }
+            }
+        }
+
+        function initAnimation() {
+            console.log('DOM加载完成，准备初始化动画');
+            try {
+                document.body.classList.add("loaded");
+                document.body.offsetHeight;
+                console.log('动画初始化完成');
+            } catch (error) {
+                console.error('初始化时发生错误:', error);
+            }
+        }
+
+        // 页面加载完成后执行
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                initAnimation();
+                fetchGreetings();
+            });
+        } else {
+            initAnimation();
+            fetchGreetings();
+        }
+    </script>
+</body>
+</html> 
