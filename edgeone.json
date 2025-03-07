@@ -2,7 +2,7 @@
     "name": "example-app",
     "buildCommand": "next build",
     "installCommand": "npm install",
-    "nodeVersion": "20.11.0",
+    "nodeVersion": "22.11.0",
    
     "redirects": [
       {
